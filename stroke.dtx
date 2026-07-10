@@ -68,11 +68,13 @@
 % This package provides a command that immitates hand-written underline:
 % \begin{docshot}
 % \documentclass{article}
-% \usepackage{stroke}
+% \usepackage[paperwidth=3in]{geometry}
+% \usepackage[colored]{stroke}
 % \pagestyle{empty}
 % \begin{document}
-% Don't forget \stroke{this}
-% and \stroke{that}!
+% Don't forget to \stroke{encrypt}
+% the data before sending them over
+% the network, it's \stroke{important}!
 % \end{document}
 % \end{docshot}
 
@@ -89,7 +91,7 @@
 %    \begin{macrocode}
 \RequirePackage{pgfopts}
 \pgfkeys{
-  /yb/.cd,
+  /stroke/.cd,
   colored/.store in=\stroke@colored,
   color/.store in=\stroke@color,
   color/.default=orange,
@@ -110,17 +112,22 @@
 %    \begin{macrocode}
 \makeatletter
 \newcommand\stroke[1]{%
+  \ifdefined\stroke@colored\let\stroke@ink\stroke@color\else\def\stroke@ink{gray!80}\fi
   \tikz[baseline=(text.base)] {
-    \node[inner sep=0em, outer sep=0em] (text) {%
-      {\ifdefined\stroke@colored\color{\stroke@color}\fi#1}};
+    \node[inner sep=0em, outer sep=0em] (text) {#1};
     \begin{scope}
-      \path[use as bounding box] (text.east) rectangle (text.west);
+      \path[use as bounding box]
+        (text.east) rectangle (text.west);
       \draw[decorate,
-        decoration={random steps, amplitude=0.05em, segment length=0.3em},
+        decoration={random steps,
+          amplitude=0.05em, segment length=0.3em},
         line join=round,
         line cap=round,
         line width=.08em,
-        draw=gray!80] ($(text.west) + (-0.2em, -.46em)$) rectangle ($(text.east) + (+0.2em, -.46em)$);
+        draw=\stroke@ink]
+        ($(text.west) + (-0.2em, -.46em)$)
+        rectangle
+        ($(text.east) + (+0.2em, -.46em)$);
     \end{scope}
   }%
 }
