@@ -31,7 +31,8 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{handstroke}
-[2026-07-12 08.17.18 Hand-Written Underline]
+[2026-07-12 08.27.47 Hand-Written Underline]
+
 
 
 
@@ -47,6 +48,7 @@
   color/.store in=\handstroke@color,
   color/.default=orange,
   color,
+  synonym/.store in=\handstroke@synonym,
 }
 \ProcessPgfPackageOptions{/handstroke}
 
@@ -88,6 +90,12 @@
     \end{scope}
   }%
 }
+\makeatother
+
+\makeatletter
+\ifdefined\handstroke@synonym
+  \expandafter\let\csname\handstroke@synonym\endcsname\handstroke
+\fi
 \makeatother
 
 \endinput
