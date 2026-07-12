@@ -94,6 +94,16 @@
 % |color=|\meta{name} to choose which one (|orange| by default), as
 % in |\usepackage[colored, color=red]{handstroke}|.
 
+% \section{Package Options}
+
+% \DescribeMacro{colored}
+% The |colored| package option makes the line be colored, with the help
+% of the \href{https://ctan.org/pkg/xcolor}{xcolor} package.
+
+% \DescribeMacro{color}
+% The |color| package option (|orange| by default) defines the color
+% of the line.
+
 % \StopEventually{}
 
 % \section{Implementation}
@@ -113,6 +123,16 @@
   color,
 }
 \ProcessPgfPackageOptions{/handstroke}
+%    \end{macrocode}
+
+% Then, we load the \href{https://ctan.org/pkg/xcolor}{xcolor} package,
+% if coloring is required via the |colored| package option:
+%    \begin{macrocode}
+\makeatletter
+\ifdefined\handstroke@colored
+  \RequirePackage{xcolor}
+\fi
+\makeatother
 %    \end{macrocode}
 
 % Then, we load the \href{https://ctan.org/pkg/tikz}{tikz} package,
