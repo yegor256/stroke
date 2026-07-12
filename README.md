@@ -1,4 +1,4 @@
-# LaTeX command `\handstroke` for a hand-written underline
+# LaTeX Command for a Hand-Written Underline
 
 [![make](https://github.com/yegor256/handstroke/actions/workflows/l3build.yml/badge.svg)](https://github.com/yegor256/handstroke/actions/workflows/l3build.yml)
 [![CTAN](https://img.shields.io/ctan/v/handstroke)](https://ctan.org/pkg/handstroke)
