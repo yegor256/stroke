@@ -3,9 +3,11 @@ hard pgf
 hard pgfopts
 hard tools
 hard xcolor
+soft bookmark
 soft docshots
 soft environ
 soft etoolbox
+soft fail-fast
 soft fvextra
 soft href-ul
 soft hypdoc
